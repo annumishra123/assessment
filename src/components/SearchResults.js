@@ -16,7 +16,7 @@ export const SearchResults = (data, username) => {
             style={{ marginTop: 10, marginBottom: 10 }}
           />
           <ul className="paddingData">
-            {userdata.map((gist, index) => {
+            {userdata && userdata.map((gist, index) => {
               return <Cards key={gist.id} gistData={gist} />;
             })}
           </ul>

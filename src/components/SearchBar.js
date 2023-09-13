@@ -19,8 +19,9 @@ export const SearchBar = () => {
       try {
         const URL = getAllGistUrl(usersname);
         const res = await fetch(URL);
-        const data = await res.json();
-        setData(data);
+        const dat = await res.json();
+        console.log(dat.message,"anurag");
+        setData(dat);
         setLoading(false);
         setError(false);
       } catch (e) {
@@ -45,11 +46,11 @@ export const SearchBar = () => {
       />
       {loading ? <Spin tip="Loading..." style={{ margin: 10 }} /> : null}
 
-      {username !== "" && data && !error ? (
+      {username !== "" && !data.message && !error ? (
         <SearchResults data={data} username={username} />
       ) : null}
 
-      {username && data.length === 0 ? (
+      {username && data.length === 0 || data.message === "Not Found" ? (
         <Alert
           message="Error"
           description="No data for this User"
